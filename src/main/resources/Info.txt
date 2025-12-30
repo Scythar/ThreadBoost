@@ -1,0 +1,84 @@
+API Endpoints
+
+Blocking Operations
+GET /api/blocking/users - Get all users (blocking)
+POST /api/blocking/users - Create user (blocking)
+PUT /api/blocking/users/{id} - Update user (blocking)
+DELETE /api/blocking/users/{id} - Delete user (blocking)
+GET /api/blocking/products - Get all products (blocking)
+POST /api/blocking/products - Create product (blocking)
+
+
+Non-Blocking Operations
+GET /api/non-blocking/users - Get all users (non-blocking)
+POST /api/non-blocking/users - Create user (non-blocking)
+PUT /api/non-blocking/users/{id} - Update user (non-blocking)
+DELETE /api/non-blocking/users/{id} - Delete user (non-blocking)
+GET /api/non-blocking/products - Get all products (non-blocking)
+POST /api/non-blocking/products - Create product (non-blocking)
+
+
+File Operations
+POST /api/file/blocking/write - Write file (blocking)
+POST /api/file/non-blocking/write - Write file (non-blocking)
+GET /api/file/blocking/read/{fileName} - Read file (blocking)
+GET /api/file/non-blocking/read/{fileName} - Read file (non-blocking)
+Testing the Performance
+Example: Create User (Blocking)
+Bash
+
+curl -X POST http://localhost:8080/api/blocking/users \
+  -H "Content-Type: application/json" \
+  -d '{
+    "username": "test_user",
+    "email": "test@example.com",
+    "phone": "1234567890",
+    "address": "Test Address"
+  }'
+Example: Create User (Non-Blocking)
+Bash
+
+curl -X POST http://localhost:8080/api/non-blocking/users \
+  -H "Content-Type: application/json" \
+  -d '{
+    "username": "test_user",
+    "email": "test@example.com",
+    "phone": "1234567890",
+    "address": "Test Address"
+  }'
+Example: File Write (Non-Blocking)
+Bash
+
+curl -X POST http://localhost:8080/api/file/non-blocking/write \
+  -H "Content-Type: application/json" \
+  -d '{
+    "fileName": "test.txt",
+    "content": "This is a test file content"
+  }'
+Performance Metrics
+Each API response includes performance metrics:
+
+operationType: Type of operation performed
+executionTime: Time taken in milliseconds
+recordsProcessed: Number of records processed
+threadName: Name of the thread that processed the request
+timestamp: Timestamp of the operation
+Architecture Highlights
+ThreadPool Configuration
+Core Pool Size: 10
+Max Pool Size: 50
+Queue Capacity: 100
+Dedicated file operation pool for I/O operations
+Security
+JWT-based authentication
+Stateless session management
+All API endpoints are permit-all for demo purposes
+
+2. **Test Blocking API**:
+   ```bash
+   curl http://localhost:8080/api/blocking/users
+Test Non-Blocking API:
+Bash
+
+curl http://localhost:8080/api/non-blocking/users
+Compare Performance: Run concurrent requests using tools like Apache JMeter or Postman
