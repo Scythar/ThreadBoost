@@ -59,6 +59,11 @@ That's where the 95.6% improvement comes from:
 (8200ms - 450ms) / 8200ms = 94.5% ≈ 95.6%
 
 
+The improvements come from two sources:
+Parallel execution (multiple I/O operations at once)
+Thread pool efficiency (request threads don't block, can serve more requests)
+
+
 
 <--------------------------------------------------------------------------------------------------------------->
 ✅
