@@ -9,7 +9,7 @@ ThreadBoost is a Spring Boot application I built to demonstrate the performance 
 ✅what you mean by blocking vs non-blocking I/O? What's the actual difference?
 
 ANSWER:
-in a blocking I/O model, when a request comes in to, let's say, read a file or query a database, the thread handling that request is blocked until the I/O operation completes. If reading the file takes 5 seconds, that thread is blocked for 5 seconds.  Tomcat by default has 200 threads in its thread pool. If 200 concurrent users hit this endpoint, all 200 threads get blocked waiting for file I/O. The 201st user? They're stuck waiting for a thread to become free. Response times skyrocket, and throughput collapses.
+in a blocking I/O model, when a request comes like read a file or query a database, the thread handling that request is blocked until the I/O operation completes. If reading the file takes 5 seconds, that thread is blocked for 5 seconds.  Tomcat by default has 200 threads in its thread pool. If 200 concurrent users hit this endpoint, all 200 threads get blocked waiting for file I/O. The 201st user? They're stuck waiting for a thread to become free. Response times skyrocket, and throughput collapses.
 
 In a non-blocking I/O model, the thread doesn't wait. Instead, it delegates the I/O operation to a background worker thread and immediately returns to handle the next request.
 
